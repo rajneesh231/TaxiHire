@@ -9,5 +9,5 @@
 - After this navigate to the folder that contains this project. Execute the following command
 - node server.js
 
-  ## Open this website in browser
-  - Search in your brower "http://localhost:4000/public/index.html".
+## Open this website in browser
+- Search in your brower "http://localhost:4000/public/index.html".
