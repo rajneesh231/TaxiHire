@@ -10,4 +10,4 @@
 - node server.js
 
 ## Open this website in browser
-- Search in your brower "http://localhost:4000/public/index.html".
+- Search in your brower "localhost:4000".
