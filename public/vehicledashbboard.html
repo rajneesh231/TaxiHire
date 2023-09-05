@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <title>Vehicle owner dashboard</title>
+  <script>
+    $(document).ready(function(){
+      $("#logoutbtn").click(function(){
+        localStorage.removeItem("uid");
+        location.href="/";
+      });
+    });
+  </script>
+  <style>
+    body {
+      background: rgb(2, 0, 36);
+      background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(107, 121, 9, 1) 53%, rgba(0, 212, 255, 1) 86%);
+    }
+
+    h1 {
+      margin-top: 1%;
+      margin-bottom: 5%;
+      text-align: center;
+      font-weight: bolder;
+      color: white;
+    }
+
+    .flexer {
+      display: flex;
+      margin: 5%;
+      flex-wrap: wrap;
+      margin-left: 25%;
+    }
+
+    .cardsel {
+      margin-left: 5%;
+      width: 25%;
+      border-radius: 5%;
+      margin-bottom: 5%;
+    }
+
+    .imgel {
+      border-radius: 50%;
+      height: 310px;
+      margin: 2.5%;
+      width: 310px;
+    }
+
+    @media (max-width:1000px) {
+      .cardsel {
+        width: 40%;
+
+      }
+
+      .flexer {
+        margin-left: 10%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .flexer {
+        margin-left: 10%;
+      }
+
+      .cardsel {
+        width: 80%;
+
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Vehicle Owner Dashboard</h1>
+
+  <center>
+    <div class="flexer">
+      <div class="card cardsel">
+        <img src="pics/coding_professor.jpg" style="width: 95%;height: 250px;" class="card-img-top imgel" alt="2">
+        <div class="card-body">
+          <h2 class="card-title">Owner Profile</h2>
+          <p class="card-text">View or edit your personal details your personal details</p>
+          <a href="/vehicledashowner" class="btn btn-primary">My profile</a>
+        </div>
+      </div>
+      <div class="card cardsel">
+
+        <img src="pics/cdn.barrett-jackson.png" style="width: 95%;height: 250px;" class="card-img-top imgel" alt="">
+        <div class="card-body">
+          <h2 class="card-title">Vehicle Profile</h2>
+          <p class="card-text">View or edit your personal details your vehicle details</p>
+          <a href="/vehicledashvehicle" class="btn btn-primary">Vehicle Profile</a>
+        </div>
+      </div>
+
+     <div class="btn btn-dark" style="height: 40px;" id="logoutbtn">
+       logout
+    
+     </div>
+     
+   
+    </div>
+  </center>
+
+</body>
+
+</html>

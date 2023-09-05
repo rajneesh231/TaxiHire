@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="js/angular.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var myModule = angular.module("myModule1", []);
+        var myController = myModule.controller("myController1", function ($scope, $http) {
+            $scope.doFetchAll = function () {
+                $http.get("/fetchallVownerAngular").then(okFx, notOkFx);
+                function okFx(response) {
+
+                    $scope.jsonAry = response.data;
+                }
+                function notOkFx(response) {
+                    alert("couldn't fetch data");
+                }
+
+            }
+
+            $scope.doDelete = function (uid) {
+
+                $http.get("/delete-Vowner-angular?x=" + uid).then(okFx, notOkFx);
+                function okFx(response) {
+                    alert(response.data);
+                    $scope.doFetchAll();
+                }
+                function notOkFx(response) {
+                    alert(response.data);
+                }
+            }
+
+        })
+    </script>
+</head>
+
+<body ng-app="myModule1" ng-controller="myController1">
+    <center>
+        <input type="button" value="Fetch All" ng-click="doFetchAll();">
+        <hr>
+        <table border="1" width="500">
+            <tr>
+                <th>Sr. No.</th>
+                <th>UID</th>
+                <th>Address</th>
+                <th>city</th>
+                <th>state</th>
+                <th>proof</th>
+                <th>pnumber</th>
+                <th>contact</th>
+
+                <th>pic Path</th>
+                <th>Pic</th>
+            </tr>
+            <tr ng-repeat="obj in jsonAry">
+                <td>{{$index + 1}}</td>
+                <td>{{obj.uid}}</td>
+                <td>{{obj.address}}</td>
+                <td>{{obj.city}}</td>
+                <td>{{obj.state}}</td>
+                <td>{{obj.proof}}</td>
+                <td>{{obj.pnumber}}</td>
+                <td>{{obj.contact}}</td>
+                <td>{{obj.picpath}}</td>
+
+                <td>
+                    <img src="uploads_vehicle_owner/{{obj.picpath}}" alt="" width="50" height="50">
+                </td>
+
+                <td>
+                    <input type="button" value="Delete" ng-click="doDelete(obj.uid);">
+                </td>
+
+            </tr>
+        </table>
+
+    </center>
+
+</body>
+
+</html>

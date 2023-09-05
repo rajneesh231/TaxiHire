@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <script>
+    var myModule = angular.module("myModule1", []);
+    var myController = myModule.controller("myController1", function ($scope, $http) {
+      $scope.doFetchAll = function () {
+        $http.get("/fetchallVehicleAngular?city=" + $scope.selcity + "&seat=" + $scope.selseats).then(okFx, notOkFx);
+        function okFx(response) {
+
+          $scope.jsonAry = response.data;
+        }
+        function notOkFx(response) {
+          alert("couldn't fetch data");
+        }
+
+      }
+      $scope.contactshow = function (uid) {
+
+        $http.get("/fetchcontactdetails?x=" + uid).then(okFx, notOkFx);
+        function okFx(response) {
+
+          alert("contact : " + response.data[0].contact + "\naddress : " + response.data[0].address);
+        }
+        function notOkFx(response) {
+          alert(JSON.stringify(response));
+        }
+      }
+      $scope.getdetails = function (veharray) {
+        $scope.vehdetails = veharray;
+      }
+      $scope.fetchcity = function () {
+        $http.get("/fetchcityname").then(okFx, notOkFx);
+        function okFx(response) {
+          $scope.cityarray = response.data;
+
+        }
+        function notOkFx(response) {
+          alert(JSON.stringify(response));
+        }
+      }
+      $scope.fetchseats = function () {
+        $http.get("/fetchseats").then(okFx, notOkFx);
+        function okFx(response) {
+          $scope.seatsarray = response.data;
+
+        }
+        function notOkFx(response) {
+          alert(JSON.stringify(response));
+        }
+      }
+
+
+    })
+
+
+  </script>
+  <title>Document</title>
+</head>
+
+<body ng-app="myModule1" ng-controller="myController1" ng-init="fetchcity(); fetchseats();">
+  <h1>Vehicle Provider</h1>
+  <div class="container margineeee">
+    <div class="bowexx col-md-4">
+      <label for="citysearch" class="form-label labelss"> City:</label>
+      <select name="citysearch" id="citysearch" class="adjuster form-select" ng-model="selcity">
+        <option value="select" selected>select</option>
+        <option value={{object.city}} ng-repeat="object in cityarray">{{object.city}}</option>
+      </select>
+    </div>
+    <div class="bowexx col-md-4">
+      <label for="seatsearch" class="form-label labelss"> seats:</label>
+      <select name="seatsearch" id="seatsearch" ng-model="selseats" class="adjuster form-select">
+        <option value="select" selected>select</option>
+        <option value={{obj1.seats}} ng-repeat="obj1 in seatsarray">{{obj1.seats}}</option>
+
+      </select>
+    </div>
+    <div class="bowexx col-md-3">
+      <input type="button" class="adjuster btn btn-primary" value="Fetch All" ng-click="doFetchAll();">
+    </div>
+
+
+  </div>
+  <div class="container distancing">
+
+    <div ng-repeat="obj in jsonAry" class="card-alinger">
+      <div class="card cardsel" style="width: 18rem;">
+        <img src="uploads_vehicle_details/{{obj.pic1}}" class="card-img-top img-set" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">{{obj.model}}</h2>
+          <p class="card-text">
+          <h5>user id : </h5>{{obj.uid}} <br>
+          <h5>manufacturing year : </h5>{{obj.myear}} <br>
+          <h5>minimum charges : </h5>{{obj.charges}} <br>
+          <h5>seats : </h5>{{obj.seats}}
+          </p>
+          <button type="button" class="btn btn-primary" ng-click="contactshow(obj.uid);">
+            Contact
+          </button>
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" ng-click="getdetails(obj);"
+            data-bs-target="#detailsmodal">
+            Details
+          </button>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="modal fade" id="detailsmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Car details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="padding-left: 10%;">
+          <img src="uploads_vehicle_details/{{vehdetails.pic1}}" class="stylemodal" alt="">
+          <img src="uploads_vehicle_details/{{vehdetails.pic2}}" class="stylemodal" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

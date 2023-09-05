@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <style>
+    .align {
+      display: inline;
+    }
+
+    .linkhide {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* @media (max-width :800px) {
+    .respwidth{
+      width: 60%;
+    }
+} */
+    .linkhide:hover {
+      color: inherit;
+    }
+
+    .leftter {
+      float: right;
+    }
+
+    .heading_style {
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: xx-large;
+      margin-left: 10%;
+      /* font-style: italic; */
+
+    }
+
+    .carouselimage {
+      height: 470px;
+      width: 100%;
+    }
+
+    .font-btn {
+      font-weight: bold;
+    }
+
+    .section_heading {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 700;
+      background-color: black;
+      color: white;
+      margin-top: 1px;
+    }
+
+    .card-image-whyus {
+      height: 200px;
+      width: 400px;
+    }
+
+    .cardss {
+      width: 300px;
+      margin-right: 20px;
+
+      margin-bottom: 20px;
+    }
+  </style>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <script>
+    
+var myVar=setInterval(function(){myTimer()},100);
+
+function myTimer() {
+    var d = new Date();
+    document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+	document.getElementById("demo").title=d.toLocaleDateString()+"  "+d.toLocaleTimeString();
+}
+
+  </script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function () {
+
+      $("#txtUidS").blur(function () {
+        var uidvalue = $("#txtUidS").val();
+        var url = "/checksignup?x=" + uidvalue;
+
+        $.get(url, function (result) {
+          if (result.length == 0)
+            $("#mesaggeusernamesignup").text("Username available");
+          else
+            $("#mesaggeusernamesignup").text("Username not available");
+
+        });
+
+      });
+
+
+
+
+
+      $("#signinbtn").click(function () {
+        var uidvalue = $("#txtUidL").val();
+        var pwd = $("#txtPwdL").val();
+        var url = "/checklogin?xv=" + uidvalue + "&yv=" + pwd;
+
+        $.get(url, function (result) {
+          if (result.length == 0)
+            alert("credentials not valid");
+          else {
+            // alert(result[0].utype);
+            localStorage.setItem("uid", uidvalue);
+            if (result[0].utype == "vehicle_Owner") {
+              location.href = "/vehicledash";
+            }
+            else
+              location.href = "/HireVehicle";
+          }
+
+        });
+
+      });
+
+
+
+      $("#signupbtn").click(function () {
+        var xv = $("#txtUidS").val();
+        var yv = $("#txtPwdS").val();
+        var zv = $("#txtUtypeS").val();
+        var url = "/signup?x=" + xv + "&y=" + yv + "&z=" + zv;
+        $.get(url, function (result) {
+          alert(result);
+        });
+      });
+
+
+
+
+
+    });
+  </script>
+  <title>Homepage</title>
+</head>
+
+<body>
+  <div class="fixed-top">
+    <nav class="navbar navbar-dark bg-dark ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="pics/image.png" alt="" width="80" height="64" class="d-inline-block  align-text-center">
+          <span class="heading_style">xiline</span>
+        </a>
+        <div class="leftter">
+          <div id="demo" style="color: white;"></div>
+          <button type="button" class="btn btn-dark " data-bs-toggle="modal" data-bs-target="#signinModal"><span
+              class="font-btn">Signin</span></button>
+          <button type="button" class="btn btn-dark " data-bs-toggle="modal" style="margin-top: 1%;"
+            data-bs-target="#signupModal"><span class="font-btn">Create new
+              account</span></button>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
+  <div class="container">
+
+
+    <br><br><br>
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="pics/images.cdn1.stockunlimited.png" class="d-block w-100 carouselimage" alt="...">
+
+        </div>
+        <div class="carousel-item">
+          <img style="margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 300ms;"
+            class="d-block w-10 carouselimage"
+            src="https://i.pinimg.com/originals/57/07/26/570726f9398849aa200fbcba9466f9f2.gif">
+        </div>
+        <div class="carousel-item">
+          <img src="pics/taxi-service-banner-free-ride-260nw-1492003163.png" class="d-block w-100 carouselimage"
+            alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon btn-dark" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon btn-dark" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
+    </div>
+
+
+    <div class="section_heading">Our Users</div>
+    <div style="display: flex;align-items: center;justify-content: center;padding-top: 30px;">
+      <div class="card cardss" style="border: 2px black solid;">
+        <img src="pics/the-framed-cat.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">Cab Owners</h2>
+          <p class="card-text">Provide your cab services and earn a steady income to live a life you always wanted.</p>
+        </div>
+      </div>
+      <div class="card cardss" style="border: 2px black solid;">
+        <img src="pics/jerrypng.png" style="width: 100%;height: 223px;" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">Citizens</h2>
+          <p class="card-text">Get cheap, reliable and trustworthy taxi services in your city with a click on your
+            screen.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section_heading">Why Us?</div>
+
+    <div style="display: flex;align-items: center;justify-content: center;padding-top: 30px;">
+      <div class="card cardss" style="width: 18rem;border: 2px black solid;">
+        <img
+          src="pics/best-service-concept-icon-shows-first-class-support-business-d-illustration-best-service-concept-icon-shows-first-class-support-160717908.png"
+          class="card-img-top card-image-whyus" alt="...">
+        <div class="card-body">
+          <h2 class="card-text ">Best service in the town.</h2>
+        </div>
+      </div>
+      <div class="card cardss" style="width: 18rem;border: 2px black solid;">
+        <img
+          src="pics/png-transparent-computer-icons-price-cost-discounts-and-allowances-service-low-price-miscellaneous-angle-text.png"
+          class="card-img-top card-image-whyus" alt="...">
+        <div class="card-body">
+          <h2 class="card-text ">Cheapest taxis you can find.</h2>
+        </div>
+      </div>
+      <div class="card cardss" style="width: 18rem;border: 2px black solid;">
+        <img src="pics/trustworthy-icon-1.png" class="card-img-top card-image-whyus" alt="...">
+        <div class="card-body">
+          <h2 class="card-text ">Trustworthy drivers.</h2>
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SGSF6G" height="0" width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </div>
+
+
+
+
+
+
+
+  </div>
+
+
+
+  <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title " id="exampleModalLabel">Signin</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" method="post">
+            <div class="row mb-3">
+              <label for="txtUidL" class="col-sm-2 col-form-label">User ID </label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="txtUidLogin" id="txtUidL">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="txtPwdL" class="col-sm-2 col-form-label">Password </label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" name="txtPwdLogin" id="txtPwdL">
+              </div>
+              <span id="utypefield"> </span>
+            </div>
+            <div class="modal-footer">
+              <button type="button" style="width: 100%;height: 100%;border-radius: 0px;" id="signinbtn"
+                class="btn btn-primary">Signin</button>
+              <span id="messagesigin"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create new account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" method="post">
+            <div class="row mb-3">
+              <label for="txtUidS" class="col-sm-2 col-form-label">User ID </label>
+              <div class="col-sm-10">
+                <input type="text" name="txtUid" class="form-control" id="txtUidS">
+                <span id="mesaggeusernamesignup">&nbsp;</span>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="txtPwdS" class="col-sm-2 col-form-label">Password </label>
+              <div class="col-sm-10">
+                <input type="password" name="txtPwd" class="form-control" id="txtPwdS">
+              </div>
+            </div>
+            <div>
+              <label class="col-sm-2 col-form-label" for="txtUtypeS">Usertype</label>
+              <select class="form-control" style="width: 82%;display: inline;" name="usertype" id="txtUtypeS">
+                <option value="none">Select</option>
+                <option value="vehicle_Owner">Vehicle Owner</option>
+                <option value="client">Client</option>
+              </select>
+            </div>
+            <div>
+              <br>
+            </div>
+            <div class="modal-footer">
+              <input type="button" value="Signup" id="signupbtn" style="width: 100%;height: 100%;border-radius: 0px;"
+                class="btn btn-primary">
+            </div>
+            <div id="signupmessage"></div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
