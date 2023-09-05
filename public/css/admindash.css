@@ -1,0 +1,64 @@
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(107, 121, 9, 1) 53%, rgba(0, 212, 255, 1) 86%);
+}
+
+h1 {
+    margin-top: 1%;
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+}
+
+.flexer {
+    display: flex;
+    margin-top: 75px;
+    margin-left: 25%;
+    flex-wrap: wrap;
+}
+
+.cardsel {
+    margin-left: 5%;
+    width: 25%;
+    margin-bottom: 5%;
+    border-radius: 5%;
+}
+
+.imgel {
+    border-radius: 50%;
+    height: 310px;
+    margin: 5%;
+    width: 310px;
+}
+
+.borderr {
+    margin-top: 10px;
+    border: 2px black solid;
+    border-radius: 50%;
+}
+
+.marginee {
+    margin-top: 20px;
+}
+
+@media (max-width:1000px) {
+    .cardsel {
+        width: 40%;
+
+    }
+
+    .flexer {
+        margin-left: 10%;
+    }
+}
+
+@media (max-width: 600px) {
+    .flexer {
+        margin-left: 10%;
+    }
+
+    .cardsel {
+        width: 80%;
+
+    }
+}

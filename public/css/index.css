@@ -1,0 +1,59 @@
+.align {
+    display: inline;
+}
+
+.linkhide {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* @media (max-width :800px) {
+.respwidth{
+  width: 60%;
+}
+} */
+.linkhide:hover {
+    color: inherit;
+}
+
+.leftter {
+    float: right;
+}
+
+.heading_style {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: xx-large;
+    margin-left: 10%;
+    /* font-style: italic; */
+
+}
+
+.carouselimage {
+    height: 470px;
+    width: 100%;
+}
+
+.font-btn {
+    font-weight: bold;
+}
+
+.section_heading {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    background-color: black;
+    color: white;
+    margin-top: 1px;
+}
+
+.card-image-whyus {
+    height: 200px;
+    width: 400px;
+}
+
+.cardss {
+    width: 300px;
+    margin-right: 20px;
+
+    margin-bottom: 20px;
+}
